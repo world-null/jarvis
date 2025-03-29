@@ -35,16 +35,23 @@ def takecommand():
      
 @eel.expose
 def allcommand():
-    query=takecommand()
-    print(query)
-    if "open" in query:
-        from engine.features import opencommand
-        opencommand(query)
+    try:
+        query=takecommand()
+        print(query)
+        if "open" in query:
+            from engine.features import opencommand
+            opencommand(query)
 
-    elif "on youtube":
-        from engine.features import playyoutube
-        playyoutube(query)
-    else:
-        print("not found")
+        elif "on youtube" in query:
+            from engine.features import playyoutube
+            playyoutube(query)
+        else:
+            print("not found")
+    except ImportError as e:
+        print("Module Import Error:", e)  # Specific error for import issues
+    except AttributeError as e:
+        print("Attribute Error:", e)  # In case functions are called incorrectly
+    except Exception as e:
+        print("Unexpected Error:", e)  # Generic exception handling
     
     eel.ShowHood()
