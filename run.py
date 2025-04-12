@@ -1,4 +1,3 @@
-
 import multiprocessing
 from engine.features import hotword
 from main import start
